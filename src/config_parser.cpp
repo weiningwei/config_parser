@@ -116,8 +116,11 @@ bool CONFIG_PARSER::contain_config(const std::string &section, const std::string
     return status;
 }
 
+
+template CONFIG_PARTSER_API bool CONFIG_PARSER::get_config<bool>(const std::string& section, const std::string& name, size_t pos);
+
 template <>
-bool CONFIG_PARSER::get_config(const std::string &section, const std::string &name, size_t pos)
+bool CONFIG_PARSER::get_config<bool>(const std::string &section, const std::string &name, size_t pos)
 {
     bool temp = false;
     std::string section_config = section + "-" + name;
@@ -144,8 +147,10 @@ bool CONFIG_PARSER::get_config(const std::string &section, const std::string &na
     return temp;
 }
 
+template CONFIG_PARTSER_API std::vector<bool> CONFIG_PARSER::get_config_vec<bool>(const std::string&, const std::string&);
+
 template <>
-std::vector<bool> CONFIG_PARSER::get_config_vec(const std::string &section, const std::string &name)
+std::vector<bool> CONFIG_PARSER::get_config_vec<bool>(const std::string &section, const std::string &name)
 {
     std::string section_config = section + "-" + name;
     std::vector<std::string> config = _config_map[section_config];

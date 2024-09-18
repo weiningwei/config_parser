@@ -10,6 +10,12 @@
 #include <sstream>
 #include <algorithm>
 
+#ifndef EXPORTING_DLL
+#define DLL_API __declspec(dllexport)
+#else
+#define DLL_API __declspec(dllimport)
+#endif
+
 #define CONFIG_PARTSER_API __declspec(dllexport)
 
 typedef std::unordered_map<std::string, std::vector<std::string>> CONFIG_MAP;
@@ -36,7 +42,7 @@ private:
 };
 
 template <>
-bool CONFIG_PARSER::get_config(const std::string &section, const std::string &name, size_t pos);
+bool CONFIG_PARSER::get_config<bool>(const std::string &section, const std::string &name, size_t pos);
 
 template <typename T>
 T CONFIG_PARSER::get_config(const std::string &section, const std::string &name, size_t pos)
@@ -59,7 +65,7 @@ T CONFIG_PARSER::get_config(const std::string &section, const std::string &name,
 }
 
 template <>
-std::vector<bool> CONFIG_PARSER::get_config_vec(const std::string &section, const std::string &name);
+std::vector<bool> CONFIG_PARSER::get_config_vec<bool>(const std::string &section, const std::string &name);
 
 template <typename T>
 std::vector<T> CONFIG_PARSER::get_config_vec(const std::string &section, const std::string &name)

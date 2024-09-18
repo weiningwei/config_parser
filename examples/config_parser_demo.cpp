@@ -15,6 +15,7 @@ int main()
     std::string s2_config1 = "example1";
     std::string s2_config2 = "example2";
 
+    // s1
     if (config_parser.contain_config(section1, s1_config2))
     {
         int example2 = config_parser.get_config<int>(section1, s1_config2);
@@ -30,6 +31,20 @@ int main()
         std::cout << "don't contain s1_c2_1\n";
     }
 
+    if (config_parser.contain_config(section1, s1_config5))
+    {
+        std::vector<bool> s1_example5 = config_parser.get_config_vec<bool>(section1, s1_config5);
+        for (int i = 0; i < s1_example5.size(); ++i)
+        {
+            std::cout << s1_example5[i] << " ";
+        }
+        std::cout << "\n";
+    }
+    else
+    {
+        std::cout << "don't contain s1_c5\n";
+    }
+    // s2
     if (config_parser.contain_config(section2, s2_config1))
     {
         std::vector<int> example4 = config_parser.get_config_vec<int>(section2, s2_config1);

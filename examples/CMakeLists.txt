@@ -6,7 +6,8 @@ set(publish_demo_bin_release ${PROJECT_SOURCE_DIR}/../bin/release)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_DEBUG ${publish_demo_bin_debug})
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_RELEASE ${publish_demo_bin_release})
 
-include_directories(${PROJECT_SOURCE_DIR}/../include())
+include_directories(${PROJECT_SOURCE_DIR}/../include)
+link_directories(${publish_demo_bin_release})
 
 add_executable(${PROJECT_NAME} 
     config_parser_demo.cpp)

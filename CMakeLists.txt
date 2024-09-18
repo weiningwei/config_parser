@@ -27,6 +27,16 @@ include_directories(${PROJECT_SOURCE_DIR}/include
 set(all_files ${project_headers}  ${project_sources})
 source_group(TREE "${CMAKE_CURRENT_LIST_DIR}" FILES ${all_files})
 
+set(publish_bin_debug   ${PROJECT_SOURCE_DIR}/bin/debug)
+set(publish_bin_release  ${PROJECT_SOURCE_DIR}/bin/release)
+set(publish_lib_debug ${PROJECT_SOURCE_DIR}/lib/debug)
+set(publish_lib_release ${PROJECT_SOURCE_DIR}/lib/release)
+
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_DEBUG ${publish_bin_debug})
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_RELEASE ${publish_bin_release})
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY_DEBUG ${publish_lib_debug})
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY_RELEASE  ${publish_lib_release})
+
 add_library(${PROJECT_NAME} SHARED ${all_files})
 
 install(FILES ${project_headers} DESTINATION ${PROJECT_SOURCE_DIR}/install/include/)
